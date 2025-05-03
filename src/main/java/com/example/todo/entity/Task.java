@@ -1,6 +1,7 @@
 package com.example.todo.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import com.example.todo.service.task.TaskStatus;
 
 import jakarta.persistence.*;
@@ -17,13 +18,19 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @ToString.Exclude
     private Category category;
     @Column(name = "summary")
     private String summary;
     @Column(name = "description")
     private String description;
+
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private TaskStatus status;
+
+    public Task() {
+    }
 
     public Task( String summary, String description, TaskStatus taskStatus) {
         this.summary = summary;
@@ -32,6 +39,7 @@ public class Task {
     }
 
     public Task( long id,String summary, String description, TaskStatus taskStatus) {
+
         this.id = id;
         this.summary = summary;
         this.description = description;

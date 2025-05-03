@@ -62,7 +62,7 @@ public class TaskController {
                 .toList();
         model.addAttribute("categoryList", categoryList);
          */
-        var categoryList = categoryService.findSimple();
+        var categoryList = categoryService.findAll();
         model.addAttribute("categoryList", categoryList);
         return "tasks/form";
     }

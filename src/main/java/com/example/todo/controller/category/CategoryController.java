@@ -26,7 +26,7 @@ public class CategoryController {
                 .stream()
                 .map(CategoryDTO::toDTO)
                 .toList();*/
-        var categoryList = categoryService.find();
+        var categoryList = categoryService.findAll();
         System.out.println(categoryList);
         model.addAttribute("categoryList", categoryList);
 

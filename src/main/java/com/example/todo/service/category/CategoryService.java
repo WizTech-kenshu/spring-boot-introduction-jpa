@@ -16,7 +16,7 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     // findSimple -> findAllを使って全件取得
-    public List<Category> findSimple() {
+    public List<Category> findAll() {
         System.out.println("categoryRepository select");
         return categoryRepository.findAll();  // JPAリポジトリのfindAllメソッド
     }

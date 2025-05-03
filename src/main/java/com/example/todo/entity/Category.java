@@ -3,6 +3,7 @@ package com.example.todo.entity;
 import java.util.List;
 
 import lombok.Data;
+import lombok.ToString;
 
 import jakarta.persistence.*;
 
@@ -21,6 +22,7 @@ public class Category {
 
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private List<Task> tasks;
 
 
