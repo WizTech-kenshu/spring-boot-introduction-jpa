@@ -2,7 +2,6 @@ package com.example.todo.entity;
 
 import lombok.Data;
 import com.example.todo.service.task.TaskStatus;
-import com.example.todo.entity.Category;
 
 import javax.persistence.*;
 

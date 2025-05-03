@@ -1,6 +1,5 @@
 package com.example.todo.entity;
 
-
 import java.util.List;
 
 import lombok.Data;

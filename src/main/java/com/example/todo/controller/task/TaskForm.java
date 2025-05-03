@@ -20,12 +20,13 @@ public record TaskForm(
         String status
 
 ) {
-    public static TaskForm fromEntity(Task taskEntity) {
+    public static TaskForm fromEntity(Task task) {
+
         return new TaskForm(
-                taskEntity.getCategory_id(),
-                taskEntity.getSummary(),
-                taskEntity.getDescription(),
-                taskEntity.getStatus().name()
+                task.getCategory().getId(),
+                task.getSummary(),
+                task.getDescription(),
+                task.getStatus().name()
 
         );
     }

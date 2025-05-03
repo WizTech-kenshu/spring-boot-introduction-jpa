@@ -12,7 +12,7 @@ public record TaskDTO(
     public static TaskDTO toDTO(Task entity) {
         return new TaskDTO(
                 entity.getId(),
-                entity.getCategory_id(),
+                entity.getCategory().getId(),
                 entity.getSummary(),
                 entity.getDescription(),
                 entity.getStatus().name()
