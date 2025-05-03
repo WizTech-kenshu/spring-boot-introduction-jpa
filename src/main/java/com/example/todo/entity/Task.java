@@ -12,13 +12,17 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-   private Long id;
+    private Long id;
+
 
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    private  String summary;
+    @Column(name = "summary")
+    private String summary;
+    @Column(name = "description")
     private String description;
+    @Column(name = "status")
     private TaskStatus status;
 
     public Task( String summary, String description, TaskStatus taskStatus) {
