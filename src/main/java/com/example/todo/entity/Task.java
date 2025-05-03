@@ -3,7 +3,7 @@ package com.example.todo.entity;
 import lombok.Data;
 import com.example.todo.service.task.TaskStatus;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Data
 @Entity
