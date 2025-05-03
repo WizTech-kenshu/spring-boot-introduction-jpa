@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}"
+>
+<head>
+    <title>タスク一覧</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <div>
+        <a th:href="@{/categories/creationForm}" class="btn btn-primary">作成</a>
+    </div>
+
+
+    <div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>名前</th>
+                <th>詳細</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="category : ${categoryList}" th:object="${category}">
+                <td><a th:href="@{/categories/{abc}(abc=*{id})}" th:text="'#' + *{id}"></a></td>
+                <td><a th:href="@{/categories/{abc}(abc=*{id})}" th:text="*{name}"></a></td>
+                <td><a th:href="@{/categories/{abc}(abc=*{id})}" th:text="*{description}"></a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+</body>
+</html>
