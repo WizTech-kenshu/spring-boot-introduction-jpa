@@ -37,4 +37,10 @@ public class CategoryService {
         System.out.println(newEntity);
         categoryRepository.save(newEntity);  // JPAのsaveメソッド（新規作成・更新）
     }
+
+    @Transactional
+    public void update(Category newEntity) {
+        System.out.println(newEntity);
+        categoryRepository.save(newEntity);  // JPAのsaveメソッド（新規作成・更新）
+    }
 }

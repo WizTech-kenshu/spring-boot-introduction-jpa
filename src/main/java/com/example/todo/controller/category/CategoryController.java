@@ -103,14 +103,13 @@ public class CategoryController {
             return "categories/form";
         }
 
-        Category entity  = CategoryService.findById(id).get();
+        Category entity  = categoryService.findById(id).get();
         //var entity = form.toEntity(id);
-        entity.setName(form.getName());
-        entity.setDescription(form.getDescription());
+        entity.setName(form.name());
+        entity.setDescription(form.description());
         //entity.setCategory_id(form.category_id());
 
-        CategoryService.update(entity);
-        return "redirect:/tasks/{id}";
+        categoryService.update(entity);
 
 
         return "redirect:/categories/{id}";
