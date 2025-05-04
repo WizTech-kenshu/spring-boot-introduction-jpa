@@ -1,6 +1,7 @@
 package com.example.todo.controller.task;
 
 import com.example.todo.controller.category.CategoryDTO;
+import com.example.todo.entity.Category;
 import com.example.todo.service.category.CategoryService;
 import com.example.todo.service.task.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,7 @@ public class TaskController {
                 .map(TaskDTO::toDTO)
                 .toList();
         model.addAttribute("taskList", taskList);
-
+        System.out.println(taskList);
         return "tasks/list";
     }
 
@@ -72,7 +73,13 @@ public class TaskController {
         if (bindingResult.hasErrors()) {
             return showCreationForm(form, model);
         }
-        taskService.create(form.toEntity());
+        Category category = categoryService.findById(form.category_id()).get();
+
+        Task task = new Task(category, form.summary(), form.description(), TaskStatus.valueOf(form.status()));
+
+
+
+        taskService.create(task);
         return "redirect:/tasks";
     }
 
@@ -97,6 +104,8 @@ public class TaskController {
             model.addAttribute("mode", "EDIT");
             return "tasks/form";
         }
+
+
 
         Task entity  = taskService.findById(id).get();
         //var entity = form.toEntity(id);

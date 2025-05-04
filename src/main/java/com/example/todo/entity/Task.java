@@ -32,15 +32,12 @@ public class Task {
     public Task() {
     }
 
-    public Task( String summary, String description, TaskStatus taskStatus) {
-        this.summary = summary;
-        this.description = description;
-        this.status = taskStatus;
-    }
 
-    public Task( long id,String summary, String description, TaskStatus taskStatus) {
+
+    public Task( Category category,String summary, String description, TaskStatus taskStatus) {
 
         this.id = id;
+        this.category = category;
         this.summary = summary;
         this.description = description;
         this.status = taskStatus;
