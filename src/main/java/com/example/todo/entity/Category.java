@@ -2,6 +2,7 @@ package com.example.todo.entity;
 
 import java.util.List;
 
+import com.example.todo.controller.task.TaskForm;
 import lombok.Data;
 import lombok.ToString;
 
@@ -29,8 +30,13 @@ public class Category {
     public Category() {
     }
 
-    public Category( String name, String description, List<Object> objects) {
+    public Category( String name, String description, List<Task> tasks) {
+        this.name = name;
+        this.description = description;
+        this.tasks = tasks;
     }
+
+
 }
 
 

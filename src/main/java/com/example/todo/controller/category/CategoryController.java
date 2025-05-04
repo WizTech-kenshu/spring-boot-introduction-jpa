@@ -4,7 +4,9 @@ import com.example.todo.controller.task.TaskDTO;
 import com.example.todo.controller.task.TaskForm;
 import com.example.todo.controller.task.TaskNotFoundException;
 import com.example.todo.entity.Category;
+import com.example.todo.entity.Task;
 import com.example.todo.service.category.CategoryService;
+import com.example.todo.service.task.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,18 +79,39 @@ public class CategoryController {
 
     @GetMapping("/{id}/editForm")
     public String showEditForm(@PathVariable("id") long id, Model model) {
+        Category categoryEntity =  categoryService.findById(id).orElse(null);
+
+        CategoryForm categoryForm = CategoryForm.fromEntity(categoryEntity);
+
 
 
         model.addAttribute("mode", "EDIT");
-        return "tasks/form";
+        model.addAttribute("categoryForm", categoryForm);
+        return "categories/form";
     }
 
-    @PutMapping("{id}") // PUT /tasks/{id}
+    @PutMapping("{id}") // PUT /caterories/{id}
     public String update(
             @PathVariable("id") long id,
+            @Validated @ModelAttribute CategoryForm form,
             BindingResult bindingResult,
             Model model
     ) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("mode", "EDIT");
+            return "categories/form";
+        }
+
+        Category entity  = CategoryService.findById(id).get();
+        //var entity = form.toEntity(id);
+        entity.setName(form.getName());
+        entity.setDescription(form.getDescription());
+        //entity.setCategory_id(form.category_id());
+
+        CategoryService.update(entity);
+        return "redirect:/tasks/{id}";
+
 
         return "redirect:/categories/{id}";
     }
