@@ -88,8 +88,12 @@ public class TaskController {
         var form = taskService.findById(id)
                 .map(TaskForm::fromEntity)
                 .orElseThrow(TaskNotFoundException::new);
+
+        var categoryList = categoryService.findAll();
+
         model.addAttribute("taskForm", form);
         model.addAttribute("mode", "EDIT");
+        model.addAttribute("categoryList", categoryList);
         return "tasks/form";
     }
 
@@ -108,11 +112,13 @@ public class TaskController {
 
 
         Task entity  = taskService.findById(id).get();
+        Category category = categoryService.findById(form.category_id()).get();
         //var entity = form.toEntity(id);
         entity.setDescription(form.description());
         entity.setSummary(form.summary());
         //entity.setCategory_id(form.category_id());
         entity.setStatus(TaskStatus.valueOf(form.status()));
+        entity.setCategory(category);
         taskService.update(entity);
         return "redirect:/tasks/{id}";
     }

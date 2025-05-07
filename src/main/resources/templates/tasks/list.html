@@ -19,7 +19,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>カテゴリーID</th>
+                <th>カテゴリー</th>
                 <th>概要</th>
                 <th>ステータス</th>
             </tr>
@@ -27,7 +27,7 @@
             <tbody>
             <tr th:each="task : ${taskList}" th:object="${task}">
                 <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="'#' + *{id}"></a></td>
-                <td th:text="*{category_id}"></td>
+                <td th:text="*{category_name}"></td>
                 <td><a th:href="@{/tasks/{id}(id=*{id})}" th:text="*{summary}"></a></td>
                 <td th:text="*{status}"></td>
             </tr>
